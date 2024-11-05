@@ -1,15 +1,23 @@
-﻿using Business.Interfaces;
+﻿using System;
+using Business.Interfaces;
 
 namespace Business.Services
 {
     public class PaymentService : IPaymentService
     {
+        private readonly PaymentMethodFactory _paymentMethodFactory;
+
+        public PaymentService(PaymentMethodFactory paymentMethodFactory)
+        {
+            _paymentMethodFactory = paymentMethodFactory;
+        }
+
         public bool ProcessPayment(string paymentMethod)
         {
-            if (paymentMethod == "Kreditkort" || paymentMethod == "PayPal" || paymentMethod == "Swish")
+            var method = _paymentMethodFactory.CreatePaymentMethod(paymentMethod);
+            if (method != null)
             {
-                Console.WriteLine($"{paymentMethod}-betalning behandlas.");
-                return true;
+                return method.ProcessPayment();
             }
             else
             {

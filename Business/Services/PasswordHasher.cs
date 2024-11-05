@@ -1,7 +1,9 @@
-﻿namespace Business.Services;
+﻿using Business.Interfaces;
 
-public class PasswordHasher
+namespace Business.Services;
+
+public class PasswordHasher : IPasswordHasher
 {
-    public string HashPassword(string password) => password;
-    public bool VerifyPassword(string password, string hash) => password == hash;
+    public string HashPassword(string password) => password; 
+    public bool VerifyPassword(string password, string hash) => password == hash; 
 }

@@ -1,14 +1,18 @@
-﻿using Business.Models;
+﻿using Business.Factories;
+using Business.Interfaces;
+using Business.Models;
 using Business.Services;
 
 
 public class UserService : IUserService
 {
     private readonly List<User> _users = [];
-    private readonly PasswordHasher _passwordHasher;
+    private readonly UserFactory _userFactory;
+    private readonly IPasswordHasher _passwordHasher;
 
-    public UserService(PasswordHasher passwordHasher) //ChatGPT för hur man kan säkra passwords.
+    public UserService(UserFactory userFactory, IPasswordHasher passwordHasher)
     {
+        _userFactory = userFactory;
         _passwordHasher = passwordHasher;
     }
 
@@ -20,14 +24,7 @@ public class UserService : IUserService
         if (_users.Any(u => u.Email == email))
             return false; 
 
-        var user = new User
-        {
-            Email = email,
-            PasswordHash = _passwordHasher.HashPassword(password),
-            Address = address,
-            Age = age
-        };
-
+        var user = _userFactory.CreateUser(email, password, address, age);
         _users.Add(user);
         return true;
     }

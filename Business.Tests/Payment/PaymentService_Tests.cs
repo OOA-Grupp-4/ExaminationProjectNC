@@ -1,4 +1,6 @@
+using Business.Factories;
 using Business.Interfaces;
+using Business.Models;
 using Business.Services;
 
 public class PaymentService_Tests
@@ -7,7 +9,8 @@ public class PaymentService_Tests
 
     public PaymentService_Tests()
     {
-        _paymentService = new PaymentService();
+        var paymentMethodFactory = new PaymentMethodFactory();
+        _paymentService = new PaymentService(paymentMethodFactory);
     }
 
     #region Payment Tests
@@ -64,4 +67,27 @@ public class PaymentService_Tests
     }
     #endregion
 
+    #region Discount Tests
+    [Fact]
+    public void ApplyDiscount_ValidCode_ShouldApplyDiscount()
+    {
+        // Arrange
+        var discountService = new DiscountService();
+        discountService.AddDiscountCode("STOFFE10", 0.10m);
+
+        var checkoutServiceFactory = new CheckoutServiceFactory(discountService);
+        var checkoutService = checkoutServiceFactory.CreateCheckoutService();
+
+        var product = new Product { Price = 100m };
+        checkoutService.AddProduct(product);
+
+        // Act
+        checkoutService.ApplyDiscount("STOFFE10");
+
+        // Assert
+        var expectedTotal = 90m; 
+        Assert.Equal(expectedTotal, checkoutService.GetTotal());
+        Assert.Equal("Rabatt tillagd!", checkoutService.GetMessage());
+    }
+    #endregion
 }

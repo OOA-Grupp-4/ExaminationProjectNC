@@ -1,4 +1,5 @@
 ﻿
+using Business.Factories;
 using Business.Services;
 
 public class UserServiceTests
@@ -8,7 +9,8 @@ public class UserServiceTests
     public UserServiceTests()
     {
         var passwordHasher = new PasswordHasher();
-        _userService = new UserService(passwordHasher);
+        var userFactory = new UserFactory(passwordHasher);
+        _userService = new UserService(userFactory, passwordHasher);
     }
 
     [Fact]
@@ -40,6 +42,9 @@ public class UserServiceTests
         var result = _userService.GetUserProfile(email);
 
         // Assert
-        Assert.NotNull(result); // Kontrollera att en användare faktiskt returneras
+        Assert.NotNull(result);
+        Assert.Equal(email, result.Email);
+        Assert.Equal(address, result.Address);
+        Assert.Equal(age, result.Age);
     }
 }
