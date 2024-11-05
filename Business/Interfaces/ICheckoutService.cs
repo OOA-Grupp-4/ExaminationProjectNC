@@ -4,9 +4,9 @@ namespace Business.Interfaces;
 
 public interface ICheckoutService
 {
-    void AddProduct(Product product);
-    void ApplyDiscount(string discountCode); 
-    decimal GetTotal();                     
-    string GetMessage();                    
+    public void AddProduct(Product product);
+    public void ApplyDiscount(string discountCode); 
+    public decimal GetTotal();                     
+    public string GetMessage();                    
 
 }

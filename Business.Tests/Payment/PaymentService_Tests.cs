@@ -69,7 +69,7 @@ public class PaymentService_Tests
 
     #region Discount Tests
     [Fact]
-    public void ApplyDiscount_ValidCode_ShouldApplyDiscount()
+    public void ApplyDiscount_ShouldReturnDiscount_WhenUsingValidDiscountCode()
     {
         // Arrange
         var discountService = new DiscountService();

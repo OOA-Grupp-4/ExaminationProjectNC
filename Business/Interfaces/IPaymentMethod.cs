@@ -2,5 +2,5 @@
 
 public interface IPaymentMethod
 {
-    bool ProcessPayment();
+    public bool ProcessPayment();
 }

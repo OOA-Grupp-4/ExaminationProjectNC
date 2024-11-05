@@ -2,7 +2,7 @@
 {
     public interface IDiscountService
     {
-        bool IsValid(string discountCode);                
-        decimal GetDiscountAmount(string discountCode);   
+        public bool IsValid(string discountCode);                
+        public decimal GetDiscountAmount(string discountCode);   
     }
 }
