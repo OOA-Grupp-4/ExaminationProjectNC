@@ -1,32 +1,31 @@
 ﻿using System;
 using Business.Interfaces;
 
-namespace Business.Services
+namespace Business.Services;
+
+public class CreditCardPayment : IPaymentMethod
 {
-    public class CreditCardPayment : IPaymentMethod
+    public bool ProcessPayment()
     {
-        public bool ProcessPayment()
-        {
-            Console.WriteLine("Kreditkort-betalning behandlas.");
-            return true;
-        }
+        Console.WriteLine("Kreditkort-betalning behandlas.");
+        return true;
     }
+}
 
-    public class PayPalPayment : IPaymentMethod
+public class PayPalPayment : IPaymentMethod
+{
+    public bool ProcessPayment()
     {
-        public bool ProcessPayment()
-        {
-            Console.WriteLine("PayPal-betalning behandlas.");
-            return true;
-        }
+        Console.WriteLine("PayPal-betalning behandlas.");
+        return true;
     }
+}
 
-    public class SwishPayment : IPaymentMethod
+public class SwishPayment : IPaymentMethod
+{
+    public bool ProcessPayment()
     {
-        public bool ProcessPayment()
-        {
-            Console.WriteLine("Swish-betalning behandlas.");
-            return true;
-        }
+        Console.WriteLine("Swish-betalning behandlas.");
+        return true;
     }
 }

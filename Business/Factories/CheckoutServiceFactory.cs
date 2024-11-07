@@ -1,17 +1,11 @@
 ﻿using Business.Interfaces;
-using Business.Models;
 using Business.Services;
 
 namespace Business.Factories;
 
-public class CheckoutServiceFactory
+public class CheckoutServiceFactory(IDiscountService discountService)
 {
-    private readonly IDiscountService _discountService;
-
-    public CheckoutServiceFactory(IDiscountService discountService)
-    {
-        _discountService = discountService;
-    }
+    private readonly IDiscountService _discountService = discountService;
 
     public CheckoutService CreateCheckoutService()
     {

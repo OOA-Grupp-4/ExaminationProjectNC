@@ -3,14 +3,9 @@ using Business.Interfaces;
 
 namespace Business.Factories;
 
-public class UserFactory
+public class UserFactory(IPasswordHasher passwordHasher)
 {
-    private readonly IPasswordHasher _passwordHasher;
-
-    public UserFactory(IPasswordHasher passwordHasher)
-    {
-        _passwordHasher = passwordHasher;
-    }
+    private readonly IPasswordHasher _passwordHasher = passwordHasher;
 
     public User CreateUser(string email, string password, string address, int age)
     {

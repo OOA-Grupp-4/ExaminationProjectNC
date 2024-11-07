@@ -1,28 +1,22 @@
 ﻿using Business.Factories;
 using Business.Interfaces;
 using Business.Models;
-using Business.Services;
 
+namespace Business.Services;
 
-public class UserService : IUserService
+public class UserService(UserFactory userFactory, IPasswordHasher passwordHasher) : IUserService
 {
     private readonly List<User> _users = [];
-    private readonly UserFactory _userFactory;
-    private readonly IPasswordHasher _passwordHasher;
-
-    public UserService(UserFactory userFactory, IPasswordHasher passwordHasher)
-    {
-        _userFactory = userFactory;
-        _passwordHasher = passwordHasher;
-    }
+    private readonly UserFactory _userFactory = userFactory;
+    private readonly IPasswordHasher _passwordHasher = passwordHasher;
 
     public bool RegisterUser(string email, string password, string address, int age)
     {
-        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || !email.Contains("@"))
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || !email.Contains('@'))
             return false;
 
         if (_users.Any(u => u.Email == email))
-            return false; 
+            return false;
 
         var user = _userFactory.CreateUser(email, password, address, age);
         _users.Add(user);

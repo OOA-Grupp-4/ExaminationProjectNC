@@ -1,13 +1,7 @@
 ﻿namespace Business.Models;
 
-public class Discount
+public class Discount(string code, decimal amount)
 {
-    public string Code { get; set; }
-    public decimal Amount { get; set; }
-
-    public Discount(string code, decimal amount)
-    {
-        Code = code;
-        Amount = amount;
-    }
+    public string Code { get; set; } = code;
+    public decimal Amount { get; set; } = amount;
 }

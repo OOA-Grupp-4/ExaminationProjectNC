@@ -1,7 +1,6 @@
-﻿namespace Business.Interfaces
+﻿namespace Business.Interfaces;
+
+public interface IPaymentService
 {
-    public interface IPaymentService
-    {
-        public bool ProcessPayment(string paymentMethod);
-    }
+    public bool ProcessPayment(string paymentMethod);
 }

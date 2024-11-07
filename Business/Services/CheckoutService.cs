@@ -3,17 +3,12 @@ using Business.Models;
 
 namespace Business.Services;
 
-public class CheckoutService : ICheckoutService
+public class CheckoutService(IDiscountService discountService) : ICheckoutService
 {
-    private readonly IDiscountService _discountService;
+    private readonly IDiscountService _discountService = discountService;
     private readonly List<Product> _products = [];
     private decimal _total;
     private string? _message;
-
-    public CheckoutService(IDiscountService discountService)
-    {
-           _discountService = discountService;
-    }
 
     public void AddProduct(Product product)
     {

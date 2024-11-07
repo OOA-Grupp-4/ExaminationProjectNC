@@ -1,21 +1,18 @@
 ﻿using Business.Interfaces;
+using Business.Services;
 
-namespace Business.Services;
+namespace Business.Factories;
 
 public class PaymentMethodFactory
 {
-    public IPaymentMethod CreatePaymentMethod(string paymentMethod)
+    public static IPaymentMethod CreatePaymentMethod(string paymentMethod)
     {
-        switch (paymentMethod)
+        return paymentMethod switch
         {
-            case "Kreditkort":
-                return new CreditCardPayment();
-            case "PayPal":
-                return new PayPalPayment();
-            case "Swish":
-                return new SwishPayment();
-            default:
-                return null!;
-        }
+            "Kreditkort" => new CreditCardPayment(),
+            "PayPal" => new PayPalPayment(),
+            "Swish" => new SwishPayment(),
+            _ => null!,
+        };
     }
 }

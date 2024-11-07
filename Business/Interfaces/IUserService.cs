@@ -1,5 +1,7 @@
 ﻿using Business.Models;
 
+namespace Business.Interfaces;
+
 public interface IUserService
 {
     public bool RegisterUser(string email, string password, string address, int age);
