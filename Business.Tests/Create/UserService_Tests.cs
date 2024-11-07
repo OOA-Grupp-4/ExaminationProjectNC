@@ -1,6 +1,7 @@
-﻿
-using Business.Factories;
+﻿using Business.Factories;
 using Business.Services;
+
+namespace Business.Tests.Create;
 
 public class UserServiceTests
 {

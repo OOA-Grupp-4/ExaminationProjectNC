@@ -3,6 +3,8 @@ using Business.Interfaces;
 using Business.Models;
 using Business.Services;
 
+namespace Business.Tests.Payment;
+
 public class PaymentService_Tests
 {
     private readonly IPaymentService _paymentService;
@@ -85,7 +87,7 @@ public class PaymentService_Tests
         checkoutService.ApplyDiscount("STOFFE10");
 
         // Assert
-        var expectedTotal = 90m; 
+        var expectedTotal = 90m;
         Assert.Equal(expectedTotal, checkoutService.GetTotal());
         Assert.Equal("Rabatt tillagd!", checkoutService.GetMessage());
     }
