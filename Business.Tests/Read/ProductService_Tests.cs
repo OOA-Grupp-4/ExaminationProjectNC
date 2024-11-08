@@ -49,8 +49,8 @@ public class ProductServiceTests
         var reviews = productService.GetReviews("Mobiltelefon");
 
         // Assert
-        Assert.True(result); // Kontrollera att AddReview returnerar true
-        Assert.Contains(review, reviews); // Kontrollera att recensionen finns i listan
+        Assert.True(result); 
+        Assert.Contains(review, reviews); 
     }
     #endregion
 }
