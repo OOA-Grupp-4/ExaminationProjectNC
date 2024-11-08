@@ -13,7 +13,7 @@ public class UserServiceTests
         var userFactory = new UserFactory(passwordHasher);
         _userService = new UserService(userFactory, passwordHasher);
     }
-
+    #region Register Test
     [Fact]
     public void RegisterUser_ShouldReturnTrue_IfInformationIsFilledOutCorrectly()
     {
@@ -29,6 +29,9 @@ public class UserServiceTests
         // Assert
         Assert.True(result);
     }
+    #endregion
+
+    #region GetUser Test
     [Fact]
     public void GetUserProfile_ShouldReturnUser_WhenUserIsRegistered()
     {
@@ -48,4 +51,5 @@ public class UserServiceTests
         Assert.Equal(address, result.Address);
         Assert.Equal(age, result.Age);
     }
+    #endregion
 }

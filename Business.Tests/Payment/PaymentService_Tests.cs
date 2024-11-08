@@ -75,7 +75,6 @@ public class PaymentService_Tests
     {
         // Arrange
         var discountService = new DiscountService();
-        discountService.AddDiscountCode("STOFFE10", 0.10m);
 
         var checkoutServiceFactory = new CheckoutServiceFactory(discountService);
         var checkoutService = checkoutServiceFactory.CreateCheckoutService();
